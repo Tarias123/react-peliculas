@@ -1,73 +1,42 @@
-# React + TypeScript + Vite
+# 🎬 React Movies - Frontend Lab
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Este repositorio es un registro del desarrollo de una plataforma de gestión de películas. El proyecto está diseñado siguiendo una arquitectura de **Diseño Orientado a Funcionalidades (Feature-Driven Design)**, separando la lógica por módulos escalables (Películas, Actores, Géneros, Cines).
 
-Currently, two official plugins are available:
+> 🚧 **Estado del Proyecto:** En desarrollo. Actualmente trabajando en la interfaz de usuario y navegación dinámica.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🏗️ Arquitectura del Proyecto
 
-## React Compiler
+El proyecto se organiza bajo la carpeta `src/Features`, donde cada módulo es independiente y autosuficiente:
 
-The React Compiler is currently not compatible with SWC. See [this issue](https://github.com/vitejs/vite-plugin-react/issues/428) for tracking the progress.
+* **Models**: Definición de interfaces de TypeScript (Contratos de datos).
+* **Components**: Componentes específicos de la funcionalidad (Cards, Listas, Formularios).
+* **Services**: (Próximamente) Integración con API de C# mediante Fetch/Axios.
 
-## Expanding the ESLint configuration
+## 🚀 Tecnologías y Herramientas
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+* **React 18 + TypeScript**: Tipado estricto para mayor seguridad en el desarrollo.
+* **React Router 7**: Gestión de navegación SPA (Single Page Application).
+* **Bootstrap 5**: Estilos base y componentes de interfaz.
+* **Vite**: Entorno de desarrollo rápido y eficiente.
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## 🧠 Conceptos Implementados hasta el momento
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+1.  **Enrutamiento Dinámico**: Implementación de `Routes` y `NavLink` para una navegación sin recarga de página.
+2.  **Componentes Genéricos**: Creación de componentes reutilizables como `ListadoGenerico.tsx` para manejar estados de carga y listas vacías.
+3.  **Hooks de React**:
+    * `useState` y `useEffect` para el manejo de ciclos de vida y estados complejos.
+    * `useMemo` para la optimización de cálculos en el renderizado.
+4.  **CSS Modules**: Estilos encapsulados por componente para evitar colisiones de clases.
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## 📁 Estructura de Carpetas
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+```text
+src/
+├── components/          # Componentes globales reutilizables
+├── Features/            # Módulos principales del negocio
+│   ├── Actores/
+│   ├── Cines/
+│   ├── Generos/
+│   └── Peliculas/       # Gestión de catálogo y visualización
+├── AppRoute.tsx         # Configuración central de rutas
+└── main.tsx             # Punto de entrada de la aplicación
